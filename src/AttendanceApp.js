@@ -119,13 +119,20 @@ const AttendanceApp = () => {
     )
       .then(async () => {
         const response = await authenticate(studentImgName);
-        // Update to show the custom message
-        setFeedback({
-          message: "Hello Reshma, student verified, attendance marked",
-          success: true,
-          show: true,
-        });
-        setTimeout(() => setFeedback({ ...feedback, show: false }), 3000);
+        if (response.Message === "Success") {
+          setFeedback({
+            message: `Hi ${response["firstName"]} ${response["lastName"]}, Student verified, attendance marked`,
+            success: true,
+            show: true,
+          });
+        } else {
+          setFeedback({
+            message: "Verification failed, not a student in the database",
+            success: false,
+            show: true,
+          });
+        }
+        setTimeout(() => setFeedback({ ...feedback, show: false }), 2000);
       })
       .catch((error) => {
         setFeedback({
