@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -6,7 +6,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #e0f7e9;
+  background-color: #e0f7e9; /* Slight green background */
   height: 100vh;
 `;
 
@@ -34,7 +34,12 @@ const TableData = styled.td`
   border: 1px solid #ddd;
 `;
 
-const CheckAttendancePage = ({ attendanceLog }) => {
+const mockData = [
+  { name: "John Doe", rollNumber: "12345", date: "2024-10-01", time: "09:00 AM" },
+  { name: "Jane Smith", rollNumber: "67890", date: "2024-10-01", time: "09:05 AM" },
+];
+
+const CheckAttendancePage = () => {
   return (
     <Container>
       <h1>Check Attendance</h1>
@@ -48,12 +53,12 @@ const CheckAttendancePage = ({ attendanceLog }) => {
           </tr>
         </thead>
         <tbody>
-          {attendanceLog.map((entry, index) => (
+          {mockData.map((student, index) => (
             <TableRow key={index}>
-              <TableData>{entry.name}</TableData>
-              <TableData>{entry.rollNumber}</TableData>
-              <TableData>{entry.date}</TableData>
-              <TableData>{entry.time}</TableData>
+              <TableData>{student.name}</TableData>
+              <TableData>{student.rollNumber}</TableData>
+              <TableData>{student.date}</TableData>
+              <TableData>{student.time}</TableData>
             </TableRow>
           ))}
         </tbody>
